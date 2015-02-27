@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>My Resume</title>
+<link rel="style/text" href="app/common/css/main.css" />
+</head>
+<body>
+<div id="main" ng-view>welcome</div>
+<script type="text/javascript" src="dep/requirejs/require.js"></script>
+<script type="text/javascript" src="dep/angular/angular.js"></script>
+<script type="text/javascript" src="dep/angular-route/angular-route.js"></script>
+<script type="text/javascript" src="dep/angular-resource/angular-resource.js"></script>
+<script type="text/javascript">
+require.config({
+    baseUrl: 'app',
+    paths: {
+        jquery: 'dep/jquery/dist/jquery.js'
+    }
+});
+require(['main']);
+</script>
+</body>
+</html>
