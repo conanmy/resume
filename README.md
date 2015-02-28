@@ -1,2 +1,2 @@
 # resume
-A website where you manage your resumes.
+Website where you manage your resumes.
