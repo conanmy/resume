@@ -1,8 +1,10 @@
 <div class="home">
-    <h2>Resumes</h2>
-    <ul>
-        <li>
-            <p ng-repeat="resume in resumes">{{resume.title}}</p>
-        </li>
-    </ul>
+    <div class="resume-list">
+        <div class="clearfix">
+            <a ng-repeat="resume in resumes" href="#/resume/edit/{{resume.id}}">
+                {{resume.title}}
+            </a>
+            <a class="add-resume" href="#/resume/add">+</a>
+        </div>
+    </div>
 </div>
