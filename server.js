@@ -6,6 +6,8 @@ app.use(require('morgan')('dev'));
 app.use(require('body-parser')());
 app.use(require('method-override')());
 
+app.set('port', (process.env.PORT || 5000));
+
 var Db = require('mongodb').Db;
 var Server = require('mongodb').Server;
 /*数据库连接信息host,port,user,pwd*/
@@ -47,6 +49,6 @@ app.post('/resume/all', function(req, res) {
     });
 });
 
-app.listen(18080, function(){
-    console.log('App listening on port 18080');
+app.listen(app.get('port'), function(){
+    console.log('App listening on port ' + app.get('port'));
 });
