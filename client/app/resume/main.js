@@ -40,7 +40,7 @@ angular.module('resume', ['ngRoute', 'ngResource'])
                         .error(function() {
                             window.location.hash = '/';
                         });
-                    $('.content').append('<span>Saving...</span>');
+                    $('.content').append('<span class="tip">Saving...</span>');
                 }
             };
         }

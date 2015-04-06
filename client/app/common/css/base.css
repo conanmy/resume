@@ -23,3 +23,6 @@ a {
     *zoom: 1;
     *clear: both
 }
+.tip {
+    margin-left: 10px;
+}

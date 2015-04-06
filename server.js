@@ -19,8 +19,16 @@ mongodb.MongoClient.connect(uri, function(err, db) {
             if (err) {
                 res.send(err);
             }
-            console.log(resumes);
             res.json(resumes);
+        });
+    });
+
+    app.get('/resume/all/:resumeId', function(req, res) {
+        resumes.find({_id: req.params.resumeId}, function(err, resume) {
+            if (err) {
+                res.send(err);
+            }
+            res.json(resume);
         });
     });
 
