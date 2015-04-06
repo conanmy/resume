@@ -3,7 +3,9 @@
         <div class="clearfix">
             <a ng-repeat="resume in resumes" href="#/resume/edit/{{resume._id}}">
                 <span>{{resume.title}}</span>
-                <span ng-click="delete(resume._id)" class="btn-remove"></span>
+                <span ng-click="delete(resume._id)" class="btn-remove">
+                    delete
+                </span>
             </a>
             <a class="add-resume" href="#/resume/add">+</a>
         </div>
