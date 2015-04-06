@@ -37,8 +37,10 @@ mongodb.MongoClient.connect(uri, function(err, db) {
 
     app.post('/resume/all', function(req, res) {
         if (req.body._id) {
+            var _id = req.body._id;
+            delete req.body._id;
             resumes.update({
-                '_id': new mongodb.BSONPure.ObjectID(req.body._id)
+                '_id': new mongodb.BSONPure.ObjectID(_id)
             }, req.body, function(err, result) {
                 if (err) {
                     res.send(err);
