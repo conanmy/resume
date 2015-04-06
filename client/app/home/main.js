@@ -11,10 +11,12 @@ angular.module('home', ['ngRoute', 'ngResource'])
             $scope.delete = function(_id) {
                 $http.delete('/resume/all/' + _id)
                     .success(function(){
-                        window.location.reload();
+                        //window.location.reload();
+                        console.log('success');
                     })
                     .error(function() {
-                        alert('delete fail');
+                        //window.location.reload();
+                        console.log('fail');
                     });
             };
         }

@@ -16,9 +16,10 @@
 .btn-remove {
     display: none;
     position: absolute;
-    bottom: 0;
-    right: 0;
+    bottom: -60px;
+    right: 10px;
     color: #248700;
+    font-size: 14px;
 }
 .resume-list a:hover .btn-remove {
     display: inline;
