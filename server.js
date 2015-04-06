@@ -25,6 +25,7 @@ mongodb.MongoClient.connect(uri, function(err, db) {
     });
 
     app.post('/resume/all', function(req, res) {
+        console.log(req.body);
         resumes.insert(req.body, function(err, resume) {
             if (err) {
                 res.send(err);
