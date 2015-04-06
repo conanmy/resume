@@ -9,7 +9,7 @@ angular.module('home', ['ngRoute', 'ngResource'])
         function($scope, $http, homeService) {
             $scope.resumes = homeService.query();
             $scope.delete = function(_id) {
-                $http.delete('/resume/all/' + _id)
+                $http.post('/resume/delete/' + _id)
                     .success(function(){
                         //window.location.reload();
                         console.log('success');

@@ -55,7 +55,7 @@ mongodb.MongoClient.connect(uri, function(err, db) {
         }
     });
 
-    app.delete('/resume/all/:resumeId', function(req, res) {
+    app.post('/resume/delete/:resumeId', function(req, res) {
         resumes.remove({
             '_id': new mongodb.BSONPure.ObjectID(req.params.resumeId)
         }, function(err, resume) {
