@@ -6,7 +6,7 @@
   "repository": "https://github.com/conanmy/resume",
   "license": "MIT",
   "scripts": {"start":"node server.js"},
-  "devDependencies": {
+  "dependencies": {
     "body-parser": "^1.0.2",
     "less": "^1.7.3",
     "express": "^4.12.3",
