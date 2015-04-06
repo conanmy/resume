@@ -37,7 +37,7 @@
 .btn-remove {
     position: absolute;
     top: 20px;
-    right: 10px;
+    left: 600px;
     font-size: 14px;
     color: #248700;
     padding: 2px 6px;
@@ -47,7 +47,7 @@
 .tip-remove {
     position: absolute;
     top: 45px;
-    right: 20px;
+    left: 600px;
     font-size: 14px;
     display: none;
 }
