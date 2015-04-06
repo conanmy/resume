@@ -11,7 +11,7 @@ angular.module('resume', ['ngRoute', 'ngResource'])
         });
     }])
     .controller('resumeEditCtrl', ['$scope', '$http', '$routeParams', 'getResumeService',
-        function($scope, $routeParams, getResumeService) {
+        function($scope, $http, $routeParams, getResumeService) {
             if ($routeParams.id) {
                 $scope.resume = getResumeService.get({
                     resumeId: $routeParams.id
