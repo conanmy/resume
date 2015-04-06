@@ -15,10 +15,11 @@ var mongodb = require('mongodb');
 mongodb.MongoClient.connect(uri, function(err, db) {
     var resumes = db.collection('resumes');
     app.get('/resume/all', function(req, res) {
-        resumes.find({}, function(err, resumes) {
+        resumes.find().toArray(function(err, resumes) {
             if (err) {
                 res.send(err);
             }
+            console.log(resumes);
             res.json(resumes);
         });
     });
