@@ -8,7 +8,9 @@ angular.module('home', ['ngRoute', 'ngResource'])
     .controller('homeCtrl', ['$scope', '$http', 'homeService', 
         function($scope, $http, homeService) {
             $scope.resumes = homeService.query();
-            $scope.delete = function(_id) {
+            $scope.delete = function(_id, $event) {
+                $event.stopPropagation();
+                console.log($event);
                 $http.post('/resume/delete/' + _id)
                     .success(function(){
                         //window.location.reload();
