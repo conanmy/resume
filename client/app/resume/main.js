@@ -35,6 +35,8 @@ angular.module('resume', ['ngRoute', 'ngResource'])
                         //u => saved user object
                         //putResponseHeaders => $http header getter
                         window.location.hash = '/';
+                    }, function() {
+                        window.location.hash = '/';
                     });
                 } else {
                     $http.post('/resume/all', $scope.resume)
