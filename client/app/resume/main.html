@@ -1,17 +1,25 @@
-<div>{{resume.title}}</div>
-<div class="resume-edit">
-<p>Name:<input type="text" ng-model="resume.name" /></p>
-<p>Email:<input type="text"  ng-model="resume.email" /></p>
-<div>
-Experiences:
-<textarea ng-repeat="expitem in resume.exp" ng-model="expitem.text">{{expitem.text}}</textarea>
-<div class="btn-add" ng-click="addExp()">+</div>
+<div class="clearfix">
+    <div class="resume-edit">
+        <p>
+            Resume Title:
+            <input type="text" ng-model="resume.title" />
+        </p>
+        <p>Name:<input type="text" ng-model="resume.name" /></p>
+        <p>Email:<input type="text"  ng-model="resume.email" /></p>
+        <div>
+            Experiences:
+            <textarea ng-repeat="expitem in resume.exp" ng-model="expitem.text">{{expitem.text}}</textarea>
+            <a class="btn-add" ng-click="addExp()">+</a>
+        </div>
+    </div>
+    <div class="resume-preview">
+        <p>Resume Title: {{resume.title}}</p>
+        <p>Name: {{resume.name}}</p>
+        <p>Email: {{resume.email}}</p>
+        <div>
+            Experiences:
+            <p ng-repeat="expitem in resume.exp">{{expitem.text}}</p>
+        </div>
+    </div>
 </div>
-<div class="resume-preview">
-<p>Name: {{resume.name}}</p>
-<p>Email: {{resume.email}}</p>
-<div>
-Experiences:
-<p ng-repeat="expitem in resume.exp">{{expitem.text}}</p>
-</div>
-</div>
+<a ng-click="save" class="btn-save">Save</a>

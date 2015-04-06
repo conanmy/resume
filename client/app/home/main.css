@@ -12,20 +12,3 @@
 .resume-list .add-resume {
     font-size: 40px;
 }
-.top-icon {
-    width: 21px;
-    height: 21px;
-    border: 2px solid #248700;
-    border-radius: 12px;
-    -moz-border-radius: 12px;
-    -webkit-border-radius: 12px;
-}
-.i {
-    background: url(http://x.srcdd.com/farm1/b332a0/299a1f0d/36A67.png) no-repeat 5px 5px;
-    width: 20px;
-    height: 20px;
-}
-.sidebar .top-icon {
-    margin-left: 70px;
-    margin-top: 20px;
-}
