@@ -31,7 +31,11 @@ angular.module('resume', ['ngRoute', 'ngResource'])
 
             $scope.save = function() {
                 if ($scope.resume.$save) {
-                    $scope.resume.$save();
+                    $scope.resume.$save(function(u, putResponseHeaders) {
+                        //u => saved user object
+                        //putResponseHeaders => $http header getter
+                        window.location.hash = '/';
+                    });
                 } else {
                     $http.post('/resume/all', $scope.resume)
                         .success(function(){
@@ -40,8 +44,8 @@ angular.module('resume', ['ngRoute', 'ngResource'])
                         .error(function() {
                             window.location.hash = '/';
                         });
-                    $('.content').append('<span class="tip">Saving...</span>');
                 }
+                $('.content').append('<span class="tip">Saving...</span>');
             };
         }
     ]);
