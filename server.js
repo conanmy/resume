@@ -8,8 +8,7 @@ app.use(require('method-override')());
 
 app.set('port', (process.env.PORT || 5000));
 
-var uri = 'mongodb://heroku_app35600204:1hmpef50cnirkmbji8atkp9jk2@ds061691.m
-ongolab.com:61691/heroku_app35600204';
+var uri = 'mongodb://heroku_app35600204:1hmpef50cnirkmbji8atkp9jk2@ds061691.mongolab.com:61691/heroku_app35600204';
 
 var mongodb = require('mongodb');
 
