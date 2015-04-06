@@ -1,4 +1,4 @@
-.resume-list li {
+.resume-list a {
     position: relative;
     float: left;
     width: 200px;
@@ -12,20 +12,4 @@
 }
 .resume-list .add-resume {
     font-size: 40px;
-}
-.btn-remove, .btn-view {
-    display: none;
-    position: absolute;
-    bottom: -60px;
-    font-size: 14px;
-}
-.btn-remove {
-    right: 10px;
-}
-.btn-view {
-    right: 100px;
-}
-.resume-list li:hover .btn-remove,
-.resume-list li:hover .btn-view {
-    display: inline;
 }

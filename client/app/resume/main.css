@@ -31,3 +31,14 @@
     color: #248700;
     text-align: center;
 }
+.resume-edit-wrapper {
+    position: relative;
+}
+.btn-remove {
+    display: none;
+    position: absolute;
+    top: 20px;
+    right: 10px;
+    font-size: 14px;
+    color: #248700;
+}

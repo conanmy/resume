@@ -49,5 +49,15 @@ angular.module('resume', ['ngRoute', 'ngResource'])
                 }
                 $('.content').append('<span class="tip">Saving...</span>');
             };
+
+            $scope.delete = function(_id) {
+                $http.post('/resume/delete/' + _id)
+                    .success(function(){
+                        window.location.hash = '/';
+                    })
+                    .error(function() {
+                        window.location.hash = '/';
+                    });
+            };
         }
     ]);
