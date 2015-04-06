@@ -1,16 +1,13 @@
 <div class="home">
     <div class="resume-list">
-        <ul class="clearfix">
-            <li ng-repeat="resume in resumes">
+        <div class="clearfix">
+            <a ng-repeat="resume in resumes" href="#/resume/edit/{{resume._id}}">
                 <span>{{resume.title}}</span>
                 <span ng-click="delete(resume._id, $event)" class="btn-remove">
                     delete
                 </span>
-                <a href="#/resume/edit/{{resume._id}}" class="btn-view">
-                    view
-                </a>
-            </li>
-            <li class="add-resume" href="#/resume/add">+</li>
-        </ul>
+            </a>
+            <a class="add-resume" href="#/resume/add">+</a>
+        </div>
     </div>
 </div>
