@@ -16,9 +16,9 @@
     display: block;
 }
 .btn-remove {
-    display: none;
+    visibility: hidden;
     color: #248700;
 }
 .resume-list a:hover .btn-remove {
-    display: inline;
+    visibility: visible;
 }
