@@ -36,7 +36,11 @@ angular.module('resume', ['ngRoute', 'ngResource'])
                     $http.post('/resume/all', $scope.resume)
                         .success(function(){
                             window.location.hash = '/';
+                        })
+                        .error(function() {
+                            window.location.hash = '/';
                         });
+                    $('.content').append('<span>Saving...</span>');
                 }
             };
         }
