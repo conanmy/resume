@@ -35,7 +35,7 @@ angular.module('resume', ['ngRoute', 'ngResource'])
                 } else {
                     $http.post('/resume/all', $scope.resume)
                         .success(function(){
-                            alert('saved');
+                            window.location.hash = '/';
                         });
                 }
             };
