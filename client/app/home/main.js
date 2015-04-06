@@ -5,6 +5,17 @@ angular.module('home', ['ngRoute', 'ngResource'])
             controller: 'homeCtrl'
         });
     }])
-    .controller('homeCtrl', ['$scope', 'homeService', function($scope, homeService) {
-        $scope.resumes = homeService.query();
-    }]);
+    .controller('homeCtrl', ['$scope', '$http', 'homeService', 
+        function($scope, $http, homeService) {
+            $scope.resumes = homeService.query();
+            $scope.delete = function(_id) {
+                $http.delete('/resume/all/' + _id)
+                    .success(function(){
+                        window.location.reload();
+                    })
+                    .error(function() {
+                        alert('delete fail');
+                    });
+            };
+        }
+    ]);

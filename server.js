@@ -54,6 +54,16 @@ mongodb.MongoClient.connect(uri, function(err, db) {
             });
         }
     });
+
+    app.delete('/resume/all/:resumeId', function(req, res) {
+        resumes.delete({
+            '_id': new mongodb.BSONPure.ObjectID(req.params.resumeId)
+        }, function(err, resume) {
+            if (err) {
+                res.send(err);
+            }
+        });
+    });
 });
 
 app.listen(app.get('port'), function(){

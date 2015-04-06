@@ -12,3 +12,13 @@
 .resume-list .add-resume {
     font-size: 40px;
 }
+.resume-list a span {
+    display: block;
+}
+.btn-remove {
+    display: none;
+    color: #248700;
+}
+.resume-list a:hover .btn-remove {
+    display: inline;
+}
