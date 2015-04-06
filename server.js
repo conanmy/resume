@@ -25,8 +25,8 @@ mongodb.MongoClient.connect(uri, function(err, db) {
 
     app.get('/resume/all/:resumeId', function(req, res) {
         resumes.findOne({
-            _id: {
-                "$oid": req.params.resumeId
+            '_id': {
+                '$oid': req.params.resumeId
             }
         }, function(err, resume) {
             if (err) {
