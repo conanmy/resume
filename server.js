@@ -8,44 +8,28 @@ app.use(require('method-override')());
 
 app.set('port', (process.env.PORT || 5000));
 
-var Db = require('mongodb').Db;
-var Server = require('mongodb').Server;
-/*数据库连接信息host,port,user,pwd*/
-var db_name = 'hIAiNlggtmLPkZsbURBV';  // 数据库名，从云平台获取
-var db_host =  'mongo.duapp.com';  // 数据库地址
-var db_port =  '8908';  // 数据库端口
-var username = 'connamy';  // 用户名（API KEY）
-var password = 'cooldown';  // 密码(Secret KEY)
+var uri = 'mongodb://heroku_app35600204:1hmpef50cnirkmbji8atkp9jk2@ds061691.m
+ongolab.com:61691/heroku_app35600204';
 
-var db = new Db(db_name, new Server(db_host, db_port, {}), {w: 1});
+var mongodb = require('mongodb');
 
-db.open(function(err, db) {
-    db.authenticate(username, password, function(err, result) { 
-        if (err) {
-            db.close();
-            res.end('Authenticate failed!');
-            return;   
-        }
-        db.collection('resumes', function(err, collection) {
-            
-        }); 
+mongodb.MongoClient.connect(uri, function(err, db) {
+    var resumes = db.collection('resumes');
+    app.get('/resume/all', function(req, res) {
+        resumes.find(function(err, resumes) {
+            if (err) {
+                res.send(err);
+            }
+            res.json(resumes);
+        });
     });
-});
 
-app.get('/resume/all', function(req, res) {
-    db.get('resumes').find(function(err, resumes) {
-        if (err) {
-            res.send(err);
-        }
-        res.json(resumes);
-    });
-});
-
-app.post('/resume/all', function(req, res) {
-    db.get('resumes').insert(req.body, function(err, resume) {
-        if (err) {
-            res.send(err);
-        }
+    app.post('/resume/all', function(req, res) {
+        resumes.insert(req.body, function(err, resume) {
+            if (err) {
+                res.send(err);
+            }
+        });
     });
 });
 
