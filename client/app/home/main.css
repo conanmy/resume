@@ -25,7 +25,7 @@
 .btn-view {
     right: 100px;
 }
-.resume-list a:hover .btn-remove,
-.resume-list a:hover .btn-view {
+.resume-list li:hover .btn-remove,
+.resume-list li:hover .btn-view {
     display: inline;
 }
