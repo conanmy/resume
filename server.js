@@ -30,6 +30,7 @@ mongodb.MongoClient.connect(uri, function(err, db) {
             if (err) {
                 res.send(err);
             }
+            res.redirect('/');
         });
     });
 });
