@@ -46,8 +46,8 @@
 }
 .tip-remove {
     position: absolute;
-    top: 35px;
-    right: 10px;
+    top: 45px;
+    right: 20px;
     font-size: 14px;
     display: none;
 }

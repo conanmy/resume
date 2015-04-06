@@ -23,6 +23,7 @@ angular.module('resume', ['ngRoute', 'ngResource'])
                     email: 'your email',
                     exp: [{text: 'new experience'}]
                 };
+                $('.btn-remove').hide();
             }
             
             $scope.addExp = function() {
