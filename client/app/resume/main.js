@@ -58,6 +58,7 @@ angular.module('resume', ['ngRoute', 'ngResource'])
                     .error(function() {
                         window.location.hash = '/';
                     });
+                $('.tip-remove').show();
             };
         }
     ]);

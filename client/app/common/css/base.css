@@ -2,9 +2,6 @@ body, h2, ul, li {
     margin: 0;
     padding: 0;
 }
-ul, li {
-    list-style: none;
-}
 body {
     font-family: Georgia;
     background-image: url(http://x.srcdd.com/farm1/b332a0/32cc7140/5D432.png);

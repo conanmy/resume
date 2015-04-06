@@ -35,10 +35,19 @@
     position: relative;
 }
 .btn-remove {
-    display: none;
     position: absolute;
     top: 20px;
     right: 10px;
     font-size: 14px;
     color: #248700;
+    padding: 2px 6px;
+    border: solid 1px #248700;
+    display: inline-block;
+}
+.tip-remove {
+    position: absolute;
+    top: 35px;
+    right: 10px;
+    font-size: 14px;
+    display: none;
 }
