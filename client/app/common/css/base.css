@@ -2,11 +2,6 @@ body, h2 {
     margin: 0;
     padding: 0;
 }
-body {
-    font-family: Georgia;
-    background-image: url(http://x.srcdd.com/farm1/b332a0/32cc7140/5D432.png);
-    background-repeat: repeat;
-}
 a {
     text-decoration: none;
     cursor: pointer;

@@ -1,5 +1,7 @@
 body {
-    
+    font-family: Georgia;
+    background-image: url(http://x.srcdd.com/farm1/b332a0/32cc7140/5D432.png);
+    background-repeat: repeat;
 }
 .sidenav {
     position: absolute;
@@ -18,7 +20,6 @@ body {
     margin-top: 10px;
 }
 .wrapper {
-    width: 1000px;
     margin-left: 190px;
     padding: 0 20px;
 }
@@ -29,7 +30,6 @@ body {
     vertical-align: top;
 }
 .content {
-    min-height: 270px;
     padding: 20px 0;
 }
 .sidebar {
@@ -60,4 +60,34 @@ body {
     padding-top: 10px;
     border-top: 1px solid #eee;
     color: #248700;
+}
+@media screen and (max-width: 1030px) {
+    body {
+        background-image: none;
+    }
+    .sidenav {
+        position: relative;
+        width: auto;
+        padding: 0 20px;
+    }
+    .wrapper {
+        margin-left: 0;
+    }
+    .main {
+        width: auto;
+    }
+    .main .title {
+        display: none;
+    }
+    .main .footer {
+        display: none;
+    }
+    .sidebar {
+        width: 100%;
+        margin-left: 0;
+    }
+    .sidebar .title {
+        height: auto;
+        padding-top: 20px;
+    }
 }
