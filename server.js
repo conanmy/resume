@@ -4,7 +4,7 @@ var app = express();
 app.use(require('serve-static')(__dirname + '/client'));
 app.use(require('morgan')('dev'));
 app.use(require('body-parser')());
-app.use(require('method-override')());
+app.use(require('method-override')('X-HTTP-Method-Override'));
 
 app.set('port', (process.env.PORT || 5000));
 
