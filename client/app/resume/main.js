@@ -10,19 +10,18 @@ angular.module('resume', ['ngRoute', 'ngResource'])
             controller: 'resumeEditCtrl'
         });
     }])
-    .controller('resumeEditCtrl', ['$scope', '$http', '$routeParams', 'getResumeService',
-        function($scope, $http, $routeParams, getResumeService) {
+    .controller('resumeEditCtrl', ['$scope', '$http', '$routeParams', 'resumeService',
+        function($scope, $http, $routeParams, resumeService) {
             if ($routeParams.id) {
-                $scope.resume = getResumeService.get({
+                $scope.resume = resumeService.get({
                     resumeId: $routeParams.id
                 });
             } else {
-                $scope.resume = {
-                    title: 'your title',
-                    name: 'your name',
-                    email: 'your email',
-                    exp: [{text: 'new experience'}]
-                };
+                $scope.resume = new resumeService();
+                $scope.resume.title = 'your title';
+                $scope.resume.name = 'your name';
+                $scope.resume.email = 'your email';
+                $scope.resume.exp = [{text: 'new experience'}];
                 $('.btn-remove').hide();
             }
             
@@ -30,35 +29,21 @@ angular.module('resume', ['ngRoute', 'ngResource'])
                 $scope.resume.exp.push({text: 'new experience'});
             };
 
+            var goHome = function() {
+                window.location.hash = '/';
+            };
+
             $scope.save = function() {
-                if ($scope.resume.$save) {
-                    $scope.resume.$save(function(u, putResponseHeaders) {
-                        //u => saved user object
-                        //putResponseHeaders => $http header getter
-                        window.location.hash = '/';
-                    }, function() {
-                        window.location.hash = '/';
-                    });
+                if ($routeParams.id) {
+                    $scope.resume.$update(goHome, goHome);
                 } else {
-                    $http.post('/resume/all', $scope.resume)
-                        .success(function(){
-                            window.location.hash = '/';
-                        })
-                        .error(function() {
-                            window.location.hash = '/';
-                        });
+                    $scope.resume.$save(goHome, goHome);
                 }
                 $('.content').append('<span class="tip">Saving...</span>');
             };
 
             $scope.delete = function(_id) {
-                $http.post('/resume/delete/' + _id)
-                    .success(function(){
-                        window.location.hash = '/';
-                    })
-                    .error(function() {
-                        window.location.hash = '/';
-                    });
+                $scope.resume.$remove(goHome, goHome);
                 $('.tip-remove').show();
             };
         }

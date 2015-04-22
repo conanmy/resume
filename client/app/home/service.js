@@ -1,4 +1,7 @@
 angular.module('home')
-    .factory('homeService', ['$resource', function($resource) {
-        return $resource('/resume/all');
+    .factory('resumeService', ['$resource', function($resource) {
+        return $resource(
+            '/resumes/:resumeId',
+            {resumeId: '@_id'}
+        );
     }]);

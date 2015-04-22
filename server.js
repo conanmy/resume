@@ -14,7 +14,7 @@ var mongodb = require('mongodb');
 
 mongodb.MongoClient.connect(uri, function(err, db) {
     var resumes = db.collection('resumes');
-    app.get('/resume/all', function(req, res) {
+    app.get('/resumes/', function(req, res) {
         resumes.find().toArray(function(err, resumes) {
             if (err) {
                 res.send(err);
@@ -23,7 +23,7 @@ mongodb.MongoClient.connect(uri, function(err, db) {
         });
     });
 
-    app.get('/resume/all/:resumeId', function(req, res) {
+    app.get('/resumes/:resumeId', function(req, res) {
         console.log(req.params.resumeId);
         resumes.findOne({
             '_id': new mongodb.BSONPure.ObjectID(req.params.resumeId)
@@ -35,27 +35,27 @@ mongodb.MongoClient.connect(uri, function(err, db) {
         });
     });
 
-    app.post('/resume/all', function(req, res) {
-        if (req.body._id) {
-            var _id = req.body._id;
-            delete req.body._id;
-            resumes.update({
-                '_id': new mongodb.BSONPure.ObjectID(_id)
-            }, req.body, function(err, result) {
-                if (err) {
-                    res.send(err);
-                }
-            });
-        } else {
-            resumes.insert(req.body, function(err, resume) {
-                if (err) {
-                    res.send(err);
-                }
-            });
-        }
+    app.post('/resumes/', function(req, res) {
+        resumes.insert(req.body, function(err, resume) {
+            if (err) {
+                res.send(err);
+            }
+        });
     });
 
-    app.post('/resume/delete/:resumeId', function(req, res) {
+    app.post('resumes/:resumeId', function() {
+        var _id = req.body._id;
+        delete req.body._id;
+        resumes.update({
+            '_id': new mongodb.BSONPure.ObjectID(_id)
+        }, req.body, function(err, result) {
+            if (err) {
+                res.send(err);
+            }
+        });
+    });
+
+    app.delete('/resumes/:resumeId', function(req, res) {
         resumes.remove({
             '_id': new mongodb.BSONPure.ObjectID(req.params.resumeId)
         }, function(err, resume) {

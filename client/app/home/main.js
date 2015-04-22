@@ -5,8 +5,8 @@ angular.module('home', ['ngRoute', 'ngResource'])
             controller: 'homeCtrl'
         });
     }])
-    .controller('homeCtrl', ['$scope', '$http', 'homeService', 
-        function($scope, $http, homeService) {
-            $scope.resumes = homeService.query();
+    .controller('homeCtrl', ['$scope', '$http', 'resumeService', 
+        function($scope, $http, resumeService) {
+            $scope.resumes = resumeService.query();
         }
     ]);
