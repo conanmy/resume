@@ -44,16 +44,7 @@ mongodb.MongoClient.connect(uri, function(err, db) {
     });
 
     app.put('resumes/:resumeId', function() {
-        var _id = req.body._id;
-        delete req.body._id;
-        resumes.update({
-            '_id': new mongodb.BSONPure.ObjectID(_id)
-        }, req.body, function(err, result) {
-            if (err) {
-                res.send(err);
-            }
-            res.send(result);
-        });
+        res.send('ok');
     });
 
     app.delete('/resumes/:resumeId', function(req, res) {
