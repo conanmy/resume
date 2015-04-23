@@ -4,7 +4,7 @@ var app = express();
 app.use(require('serve-static')(__dirname + '/client'));
 app.use(require('morgan')('dev'));
 app.use(require('body-parser')());
-app.use(require('method-override')('X-HTTP-Method-Override'));
+app.use(require('method-override')());
 
 app.set('port', (process.env.PORT || 5000));
 
@@ -43,8 +43,16 @@ mongodb.MongoClient.connect(uri, function(err, db) {
         });
     });
 
-    app.put('resumes/:resumeId', function() {
-        res.send('ok');
+    app.put('/resumes/:resumeId', function() {
+        var _id = req.body._id;
+        delete req.body._id;
+        resumes.update({
+            '_id': new mongodb.BSONPure.ObjectID(_id)
+        }, req.body, function(err, result) {
+            if (err) {
+                res.send(err);
+            }
+        });
     });
 
     app.delete('/resumes/:resumeId', function(req, res) {
