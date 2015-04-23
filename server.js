@@ -49,6 +49,7 @@ mongodb.MongoClient.connect(uri, function(err, db) {
         resumes.update({
             '_id': new mongodb.BSONPure.ObjectID(_id)
         }, req.body, function(err, result) {
+            console.log(err);
             if (err) {
                 res.send(err);
             }
