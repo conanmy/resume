@@ -1,7 +1,7 @@
 {
   "version": "0.0.0",
   "private": true,
-  "name": "resume-angular-nodejs",
+  "name": "myresumes",
   "description": "my resume website build with angular and nodejs",
   "repository": "https://github.com/conanmy/resume",
   "license": "MIT",
