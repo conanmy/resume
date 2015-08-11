@@ -10,7 +10,7 @@ app.set('port', (process.env.PORT || 5000));
 
 var dburi;
 if (app.get('env') === 'production') {
-    dburi = 'mongodb://heroku_app35600204:1hmpef50cnirkmbji8atkp9jk2@ds061691.mongolab.com:61691/heroku_app35600204';
+    dburi = process.env.MONGOLAB_URI;
 } else {
     dburi = 'mongodb://localhost:27017/myresume';
 }
