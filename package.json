@@ -8,10 +8,6 @@
   "scripts": {"start":"node server.js"},
   "dependencies": {
     "express": "~4.9.x",
-    "grunt-contrib-connect": "~0.8.0",
-    "load-grunt-tasks": "~0.2.0",
-    "body-parser": "^1.0.2",
-    "less": "^1.7.3",
     "serve-static": "^1.9.2",
     "morgan": "^1.5.2",
     "method-override": "^2.3.2",
