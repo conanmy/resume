@@ -15,9 +15,85 @@ if (app.get('env') === 'production') {
     dburi = 'mongodb://localhost:27017/myresume';
 }
 
-var mongodb = require('mongodb');
+var mongoose = require('mongoose');
+mongoose.connect(dburi);
+var Schema = mongoose.Schema;
+var Resume = mongoose.model(
+    'Resume',
+    new Schema({
+        title: String,
+        name: String,
+        email: String,
+        exp: [{text: String}]
+    })
+);
+app.get('/resumes/', function(req, res) {
+    Resume.find({}, function(err, resumes) {
+        if (err) {
+            res.send(err);
+        }
+        res.json(resumes);
+    });
+});
 
-mongodb.MongoClient.connect(dburi, function(err, db) {
+app.get('/resumes/:resumeId', function(req, res) {
+    Resume.findOne({
+        _id: req.params.resumeId
+    }, function(err, resume) {
+        if (err) {
+            res.send(err);
+        }
+        res.json(resume);
+    });
+});
+
+app.post('/resumes/', function(req, res) {
+    var newResume = new Resume(req.body);
+    console.log(newResume);
+    newResume.save(function(err, resume) {
+        if (err) {
+            console.log(err);
+            res.send(err);
+        }
+        res.json(resume);
+    });
+});
+
+app.put('/resumes/:resumeId', function(req, res) {
+    Resume.findOneAndUpdate(
+        {
+            _id: req.body._id
+        }, 
+        {
+            $set: req.body
+        }, 
+        function(err, resume) {
+            if (err) {
+                res.send(err);
+            }
+            res.json(resume);
+        }
+    );
+});
+
+app.delete('/resumes/:resumeId', function(req, res) {
+    Resume.findOneAndRemove(
+        {
+            _id: req.params.resumeId
+        },
+        {},
+        function(err, resume) {
+            if (err) {
+                res.send(err);
+            }
+            res.json(resume);
+        }
+    );
+});
+
+// var mongodb = require('mongodb');
+
+/*mongodb.MongoClient.connect(dburi, function(err, db) {
     var resumes = db.collection('resumes');
     app.get('/resumes/', function(req, res) {
         resumes.find().toArray(function(err, resumes) {
@@ -69,7 +145,7 @@ mongodb.MongoClient.connect(dburi, function(err, db) {
             }
         });
     });
-});
+});*/
 
 app.listen(app.get('port'), function(){
     console.log('App listening on port ' + app.get('port'));
