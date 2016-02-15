@@ -11,6 +11,7 @@
     "serve-static": "^1.9.2",
     "morgan": "^1.5.2",
     "method-override": "^2.3.2",
-    "mongoose": "^4.0.2"
+    "mongoose": "^4.0.2",
+    "body-parser": "~1.14.1"
   }
 }
