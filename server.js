@@ -1,10 +1,20 @@
 var express = require('express');
-var app = express();
+var passport = require('passport');
+passport.serializeUser(function(user, done) {
+  done(null, user);
+});
+passport.deserializeUser(function(user, done) {
+  done(null, user);
+});
+var FacebookStrategy = require('passport-facebook').Strategy;
 
+var app = express();
 app.use(require('serve-static')(__dirname + '/client'));
-app.use(require('morgan')('dev'));
-app.use(require('body-parser')());
-app.use(require('method-override')());
+app.use(require('cookie-parser')());
+app.use(require('body-parser').urlencoded({ extended: true }));
+app.use(require('express-session')({ secret: 'keyboard cat', resave: true, saveUninitialized: true }));
+app.use(passport.initialize());
+app.use(passport.session());
 
 app.set('port', (process.env.PORT || 5000));
 
@@ -28,12 +38,49 @@ var Resume = mongoose.model(
     })
 );
 
-var passport = require('./getPassport');
+var User = mongoose.model(
+    'User',
+    new Schema({
+        facebookId: String
+    })
+);
+passport.use(
+    new FacebookStrategy({
+        clientID: 173388723062737,
+        clientSecret: 'b701af3817f00ac891c90958a68ab933',
+        callbackURL: "/auth/facebook/callback"
+    },
+    function(accessToken, refreshToken, profile, done) {
+        User.findOne({
+            facebookId: profile.id 
+        }, function(err, user) {
+            if (err) {
+                return done(err);
+            }
+            if (!user) {
+                user = new User({
+                    facebookId: profile.id
+                });
+                user.save(function(err) {
+                    if (err) console.log(err);
+                    return done(err, user);
+                });
+            } else {
+                return done(err, user);
+            }
+        });
+    }
+));
+
 app.get('/auth/facebook', passport.authenticate('facebook'));
-app.get('/auth/facebook/callback', passport.authenticate('facebook', {
-    successRedirect: '/',
-    failureRedirect: '/login'
-}));
+
+app.get(
+    '/auth/facebook/callback',
+    passport.authenticate('facebook', { failureRedirect: '/login' }),
+    function(req, res) {
+        res.redirect('/#/');
+    }
+);
 
 app.get('/resumes/', function(req, res) {
     Resume.find({}, function(err, resumes) {
