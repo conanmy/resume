@@ -5,13 +5,17 @@
   "description": "resume managing website build with angular, nodejs and mongodb",
   "repository": "https://github.com/conanmy/resume",
   "license": "MIT",
-  "scripts": {"start":"node server.js"},
+  "scripts": {
+    "start": "node server.js"
+  },
   "dependencies": {
+    "body-parser": "1.11.0",
     "express": "4.9.x",
-    "serve-static": "1.9.2",
-    "morgan": "1.5.2",
     "method-override": "2.3.2",
-    "mongoose": "4.0.2",
-    "body-parser": "1.14.1"
+    "mongoose": "4.1.8",
+    "morgan": "1.5.2",
+    "passport": "0.3.2",
+    "passport-facebook": "^2.1.1",
+    "serve-static": "1.9.2"
   }
 }

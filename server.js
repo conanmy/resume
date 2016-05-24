@@ -27,6 +27,14 @@ var Resume = mongoose.model(
         exp: [{text: String}]
     })
 );
+
+var passport = require('./getPassport');
+app.get('/auth/facebook', passport.authenticate('facebook'));
+app.get('/auth/facebook/callback', passport.authenticate('facebook', {
+    successRedirect: '/',
+    failureRedirect: '/login'
+}));
+
 app.get('/resumes/', function(req, res) {
     Resume.find({}, function(err, resumes) {
         if (err) {

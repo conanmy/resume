@@ -45,11 +45,9 @@ body {
     border-radius: 12px;
     -moz-border-radius: 12px;
     -webkit-border-radius: 12px;
-}
-.i {
-    background: url(http://x.srcdd.com/farm1/b332a0/299a1f0d/36A67.png) no-repeat 5px 5px;
-    width: 20px;
-    height: 20px;
+    text-align: center;
+    font-size: 16px;
+    line-height: 22px;
 }
 .sidebar .top-icon {
     margin-top: 20px;
