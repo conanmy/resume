@@ -2,3 +2,4 @@
 /client/dep/*
 .mongo/*
 mongodb.conf
+*.log
