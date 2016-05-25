@@ -1,22 +1,16 @@
 var express = require('express');
 var passport = require('passport');
-passport.serializeUser(function(user, done) {
-  done(null, user);
-});
-passport.deserializeUser(function(user, done) {
-  done(null, user);
-});
 var FacebookStrategy = require('passport-facebook').Strategy;
 
 var app = express();
 var bodyParser = require('body-parser');
-app.use(require('serve-static')(__dirname + '/client'));
 app.use(require('cookie-parser')());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(require('express-session')({ secret: 'keyboard cat', resave: true, saveUninitialized: true }));
 app.use(passport.initialize());
 app.use(passport.session());
+app.use(require('serve-static')(__dirname + '/client'));
 
 app.set('port', (process.env.PORT || 5000));
 
@@ -43,9 +37,18 @@ var Resume = mongoose.model(
 var User = mongoose.model(
     'User',
     new Schema({
-        facebookId: String
+        facebook: {id: String, name: String, email: String}
     })
 );
+passport.serializeUser(function(user, done) {
+    done(null, user.id);
+});
+passport.deserializeUser(function(id, done) {
+    console.log(id);
+    User.findById(id, function(err, user) {
+        done(err, user);
+    });
+});
 passport.use(
     new FacebookStrategy({
         clientID: 173388723062737,
@@ -53,40 +56,24 @@ passport.use(
         callbackURL: "/auth/facebook/callback"
     },
     function(accessToken, refreshToken, profile, done) {
-        // asynchronous
         process.nextTick(function() {
-
-            // find the user in the database based on their facebook id
             User.findOne({ 'facebook.id' : profile.id }, function(err, user) {
-
-                // if there is an error, stop everything and return that
-                // ie an error connecting to the database
-                if (err)
+                if (err) {
                     return done(err);
-
-                // if the user is found, then log them in
+                }
                 if (user) {
-                    return done(null, user); // user found, return that user
+                    return done(null, user);
                 } else {
-                    // if there is no user found with that facebook id, create them
-                    var newUser            = new User();
-
-                    // set all of the facebook information in our user model
-                    newUser.facebook.id    = profile.id; // set the users facebook id                   
-                    newUser.facebook.token = token; // we will save the token that facebook provides to the user                    
-                    newUser.facebook.name  = profile.name.givenName + ' ' + profile.name.familyName; // look at the passport user profile to see how names are returned
-                    newUser.facebook.email = profile.emails[0].value; // facebook can return multiple emails so we'll take the first
-
-                    // save our user to the database
+                    var newUser = new User();
+                    newUser.facebook.id    = profile.id;                  
+                    newUser.facebook.name  = profile.displayName;
                     newUser.save(function(err) {
-                        if (err)
+                        if (err) {
                             throw err;
-
-                        // if successful, return the new user
+                        }
                         return done(null, newUser);
                     });
                 }
-
             });
         });
     }
@@ -101,6 +88,10 @@ app.get(
         res.redirect('/#/');
     }
 );
+
+app.get('/user/', function(req, res) {
+    res.json(req.user);
+});
 
 app.get('/resumes/', function(req, res) {
     Resume.find({}, function(err, resumes) {

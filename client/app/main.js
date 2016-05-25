@@ -3,7 +3,8 @@ define(function() {
         'home',
         'pool',
         'resume',
-        'login'
+        'login',
+        'user'
     ]);
 
     angular.bootstrap(document, ['main']);
