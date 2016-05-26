@@ -37,14 +37,13 @@ var Resume = mongoose.model(
 var User = mongoose.model(
     'User',
     new Schema({
-        facebook: {id: String, name: String, email: String}
+        facebook: {id: String, name: String}
     })
 );
 passport.serializeUser(function(user, done) {
     done(null, user.id);
 });
 passport.deserializeUser(function(id, done) {
-    console.log(id);
     User.findById(id, function(err, user) {
         done(err, user);
     });
@@ -65,8 +64,8 @@ passport.use(
                     return done(null, user);
                 } else {
                     var newUser = new User();
-                    newUser.facebook.id    = profile.id;                  
-                    newUser.facebook.name  = profile.displayName;
+                    newUser.facebook.id = profile.id;                  
+                    newUser.facebook.name = profile.displayName;
                     newUser.save(function(err) {
                         if (err) {
                             throw err;
