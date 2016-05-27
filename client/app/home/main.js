@@ -1,9 +1,4 @@
-angular.module('home', ['ngRoute', 'ngResource'])
-    .config(['$routeProvider', function($routeProvider) {
-        $routeProvider.when('/', {
-            templateUrl: 'app/home/main.html',
-            controller: 'homeCtrl'
-        });
+angular.module('home', ['ngResource']);
     }])
     .controller('homeCtrl', ['$scope', 'resumeService', 
         function($scope, resumeService) {

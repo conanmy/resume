@@ -1,17 +1,6 @@
-angular.module('resume', ['ngRoute', 'ngResource'])
-    .config(['$routeProvider', function($routeProvider) {
-        $routeProvider.when('/resume/add', {
-            templateUrl: 'app/resume/main.html',
-            controller: 'resumeEditCtrl'
-        });
-
-        $routeProvider.when('/resume/edit/:id', {
-            templateUrl: 'app/resume/main.html',
-            controller: 'resumeEditCtrl'
-        });
-    }])
-    .controller('resumeEditCtrl', ['$scope', '$http', '$routeParams', 'resumeService',
-        function($scope, $http, $routeParams, resumeService) {
+angular.module('resume', ['ngResource'])
+    .controller('resumeEditCtrl', ['$scope', '$http', '$routeParams', 'resumeService', '$locationProvider',
+        function($scope, $http, $routeParams, resumeService, $locationProvider) {
             if ($routeParams.id) {
                 $scope.resume = resumeService.get({
                     resumeId: $routeParams.id
@@ -30,7 +19,7 @@ angular.module('resume', ['ngRoute', 'ngResource'])
             };
 
             var goHome = function() {
-                window.location.hash = '/';
+                $locationProvider.path('/');
             };
 
             $scope.save = function() {

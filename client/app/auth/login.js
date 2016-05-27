@@ -1,10 +1,4 @@
-angular.module('login', ['ngRoute', 'ngResource'])
-    .config(['$routeProvider', function($routeProvider) {
-        $routeProvider.when('/login', {
-            templateUrl: 'app/auth/login.html',
-            controller: 'loginCtrl'
-        });
-    }])
+angular.module('login', ['ngResource'])
     .controller('loginCtrl', ['$scope',
         function($scope) {
             
