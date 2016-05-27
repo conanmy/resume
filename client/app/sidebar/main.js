@@ -6,10 +6,11 @@ angular.module('user', ['ngResource'])
     }])
     .controller('userCtrl', ['$scope', '$location', 'userService', 
         function($scope, $location, userService) {
-            $scope.user = userService.get();
-            console.log($scope.user);
-            if (!$scope.user.facebook) {
-                $location.path('/login');
-            }
+            $scope.user = userService.get().then(function(user) {
+                console.log($scope.user);
+                if (!user.facebook) {
+                    $location.path('/login');
+                }
+            });
         }
     ]);
