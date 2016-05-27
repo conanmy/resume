@@ -1,14 +1,13 @@
 define(function() {
     angular.module('app', [
         'ui.router',
-        'ngRoute',
         'home',
         'pool',
         'resume',
         'login',
         'user'
     ])
-    .config(function($stateProvider, $urlRouterProvider) {
+    .config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $urlRouterProvider) {
         $urlRouterProvider.otherwise("/");
         $stateProvider
             .state('root', {
@@ -62,7 +61,7 @@ define(function() {
                     }
                 }
             });
-    });
+    }]);
 
     angular.bootstrap(document, ['app']);
 });
