@@ -4,11 +4,11 @@ angular.module('user', ['ngResource'])
             '/user'
         );
     }])
-    .controller('userCtrl', ['$scope', '$locationProvider', 'userService', 
-        function($scope, $locationProvider, userService) {
+    .controller('userCtrl', ['$scope', '$location', 'userService', 
+        function($scope, $location, userService) {
             $scope.user = userService.get();
             if (!$scope.user.name) {
-                $locationProvider.path('/login');
+                $location.path('/login');
             }
         }
     ]);

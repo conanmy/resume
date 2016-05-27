@@ -1,6 +1,6 @@
 angular.module('resume', [])
-    .controller('resumeEditCtrl', ['$scope', '$http', '$routeParams', 'resumeService', '$locationProvider',
-        function($scope, $http, $routeParams, resumeService, $locationProvider) {
+    .controller('resumeEditCtrl', ['$scope', '$http', '$routeParams', 'resumeService', '$location',
+        function($scope, $http, $routeParams, resumeService, $location) {
             if ($routeParams.id) {
                 $scope.resume = resumeService.get({
                     resumeId: $routeParams.id
@@ -19,7 +19,7 @@ angular.module('resume', [])
             };
 
             var goHome = function() {
-                $locationProvider.path('/');
+                $location.path('/');
             };
 
             $scope.save = function() {
