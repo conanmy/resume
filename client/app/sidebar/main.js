@@ -6,7 +6,7 @@ angular.module('user', ['ngResource'])
     }])
     .controller('userCtrl', ['$scope', '$location', 'userService', 
         function($scope, $location, userService) {
-            $scope.user = userService.get().then(function(user) {
+            $scope.user = userService.get().$promise.then(function(user) {
                 console.log($scope.user);
                 if (!user.facebook) {
                     $location.path('/login');
