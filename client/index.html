@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html ng-app="app">
 <head>
 <title>My Resume</title>
 <link rel="stylesheet" type="text/css" href="app/common/css/index.css" />
@@ -33,13 +33,6 @@
 <script type="text/javascript" src="app/resume/main.js"></script>
 <script type="text/javascript" src="app/auth/login.js"></script>
 <script type="text/javascript" src="app/auth/user.js"></script>
-<script type="text/javascript">
-require.config({
-    baseUrl: 'app',
-    paths: {
-    }
-});
-require(['main']);
-</script>
+<script type="text/javascript" src="app/main.js"></script>
 </body>
 </html>

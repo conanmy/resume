@@ -1,4 +1,4 @@
-angular.module('resume', ['ngResource'])
+angular.module('resume', [])
     .controller('resumeEditCtrl', ['$scope', '$http', '$routeParams', 'resumeService', '$locationProvider',
         function($scope, $http, $routeParams, resumeService, $locationProvider) {
             if ($routeParams.id) {
