@@ -4,7 +4,7 @@
   "name": "myresumes",
   "engines": {
     "node": "4.4.4"
-  }
+  },
   "description": "resume managing website build with angular, nodejs and mongodb",
   "repository": "https://github.com/conanmy/resume",
   "license": "MIT",
