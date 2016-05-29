@@ -23,13 +23,18 @@ var mongoose = require('mongoose');
 mongoose.connect(dburi);
 
 require('./passport').init();
-
+app.use(require('./controllers/auth'));
 app.get('/user/', function(req, res) {
     res.json(req.user);
 });
-
+app.use(function(req, res, next) {
+    if (!req.user) {
+        res.status(500).send('No valid user info.');
+    } else {
+        next();
+    }
+});
 app.use(require('./controllers/resume'));
-app.use(require('./controllers/auth'));
 
 app.listen(app.get('port'), function(){
     console.log('App listening on port ' + app.get('port'));

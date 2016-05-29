@@ -8,12 +8,13 @@ var Resume = mongoose.model(
         title: String,
         name: String,
         email: String,
-        exp: [{text: String}]
+        exp: [{text: String}],
+        userId: String
     })
 );
 
 router.get('/resumes/', function(req, res) {
-    Resume.find({}, function(err, resumes) {
+    Resume.find({userId: req.user._id}, function(err, resumes) {
         if (err) {
             res.send(err);
         }
@@ -33,10 +34,10 @@ router.get('/resumes/:resumeId', function(req, res) {
 });
 
 router.post('/resumes/', function(req, res) {
+    req.body.userId = req.user._id;
     var newResume = new Resume(req.body);
     newResume.save(function(err, resume) {
         if (err) {
-            console.log(err);
             res.send(err);
         }
         res.json(resume);
