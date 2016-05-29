@@ -114,7 +114,6 @@ app.get('/resumes/:resumeId', function(req, res) {
 
 app.post('/resumes/', function(req, res) {
     var newResume = new Resume(req.body);
-    console.log(newResume);
     newResume.save(function(err, resume) {
         if (err) {
             console.log(err);

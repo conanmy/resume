@@ -1,9 +1,9 @@
 angular.module('resume', [])
-    .controller('resumeEditCtrl', ['$scope', '$http', '$routeParams', 'resumeService', '$location',
-        function($scope, $http, $routeParams, resumeService, $location) {
-            if ($routeParams.id) {
+    .controller('resumeEditCtrl', ['$scope', '$http', '$stateParams', 'resumeService', '$location',
+        function($scope, $http, $stateParams, resumeService, $location) {
+            if ($stateParams.id) {
                 $scope.resume = resumeService.get({
-                    resumeId: $routeParams.id
+                    resumeId: $stateParams.id
                 });
             } else {
                 $scope.resume = new resumeService();
@@ -23,7 +23,7 @@ angular.module('resume', [])
             };
 
             $scope.save = function() {
-                if ($routeParams.id) {
+                if ($stateParams.id) {
                     $scope.resume.$update(goHome, goHome);
                 } else {
                     $scope.resume.$save(goHome, goHome);

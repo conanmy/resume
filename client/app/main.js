@@ -11,8 +11,9 @@ angular.module('app', [
     $stateProvider
         .state('root', {
             url: '',
+            abstract: true,
             views: {
-                'sidebar': {
+                'sidebar' : {
                     templateUrl: 'app/sidebar/main.html',
                     controller: 'userCtrl'
                 }
@@ -21,40 +22,46 @@ angular.module('app', [
         .state('root.home', {
             url: "/",
             views: {
-                'main': {
+                'content@': {
                     templateUrl: "app/home/main.html",
-                    controller: ''
+                    controller: 'homeCtrl'
                 }
             }
         })
         .state('root.pool', {
             url: '/pool',
             views: {
-                'main': {
+                'content@': {
                     templateUrl: 'app/pool/main.html',
                     controller: 'poolCtrl'
                 }
             }
         })
         .state('root.resume', {
-            url: "/resume",
+            abstract: true
+        })
+        .state('root.resume.add', {
+            url: '/resume/add',
             views: {
-                'main': {
+                'content@': {
                     templateUrl: "app/resume/main.html",
                     controller: 'resumeEditCtrl'
                 }
             }
         })
-        .state('root.resume.add', {
-            url: '/add',
-        })
         .state('root.resume.edit', {
-            url: '/edit/:id'
+            url: '/resume/edit/:id',
+            views: {
+                'content@': {
+                    templateUrl: "app/resume/main.html",
+                    controller: 'resumeEditCtrl'
+                }
+            }
         })
-        .state('login', {
+        .state('root.login', {
             url: '/login',
             views: {
-                'main': {
+                'content@': {
                     templateUrl: 'app/auth/login.html',
                     controller: 'loginCtrl'
                 }
