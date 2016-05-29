@@ -2,6 +2,7 @@
   "version": "0.0.0",
   "private": true,
   "name": "myresumes",
+  "version": "4.4.4",
   "description": "resume managing website build with angular, nodejs and mongodb",
   "repository": "https://github.com/conanmy/resume",
   "license": "MIT",
