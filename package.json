@@ -6,7 +6,7 @@
   "repository": "https://github.com/conanmy/resume",
   "license": "MIT",
   "scripts": {
-    "start": "node server.js",
+    "start": "node server/index.js",
     "postinstall": "node node_modules/bower/bin/bower install"
   },
   "dependencies": {
